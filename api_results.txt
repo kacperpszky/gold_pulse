@@ -1,0 +1,1 @@
+{"date":"2024-12-01T10:30:00.000Z","timestamp":1733049000000,"metal":"XAU","exchange":"LBMA","currency":"USD","price":2664.3,"prev_close_price":2664.3,"ch":0,"chp":0,"price_gram_24k":85.6592,"price_gram_22k":78.521,"price_gram_21k":74.9518,"price_gram_20k":71.3827,"price_gram_18k":64.2444,"price_gram_16k":57.1062,"price_gram_14k":49.9679,"price_gram_10k":35.6913}
