@@ -1,6 +1,27 @@
 import requests
 import json
 from urllib import request
+import psycopg2
+
+DB_NAME = "postgres"
+DB_USER = "postgres"
+DB_PASS = "1009"
+DB_HOST = "localhost"
+DB_PORT = "5432"
+
+def connectDB():
+    try:
+        conn = psycopg2.connect(database=DB_NAME,
+                                user=DB_USER,
+                                password=DB_PASS,
+                                host=DB_HOST,
+                                port=DB_PORT)
+        
+        return True
+    except:
+        return False
+
+
 
 def internet_on():
     try:

@@ -1,16 +1,42 @@
-from connect import make_request, getData, internet_on
+from connect import make_request, getData, internet_on, connectDB
+from database_save import createTable
 import os, time
 
 CYELL = '\033[33m'
 CRED = '\033[91m'
 CEND = '\033[0m'
 CGREEN = '\033[92m'
+CBLUE = '\033[34m'
 
 date = input("Data from a specific day (enter date *[....-..-..]* (y-m-d)) / skip the question (click Enter) \n")
 if len(str(date)) > 2:
     date = str(date).replace('-','')
 if internet_on():
     make_request("/" + date)
+    
+    for x in range(3):
+        for z in range (1, 4):
+            match z:
+                case 1:
+                    print(CBLUE + "Connecting do Database." + CEND)
+                    time.sleep(0.5)
+                    os.system('cls')
+                case 2:
+                    print(CBLUE + "Connecting do Database.." + CEND)
+                    time.sleep(0.5)
+                    os.system('cls')
+                case 3:
+                    print(CBLUE + "Connecting do Database..." + CEND)
+                    time.sleep(0.5)
+                    os.system('cls')
+                    
+    print(CBLUE + "Connecting do Database..." + CEND)
+    if connectDB():
+        print(CGREEN + "Connected do Database." + CEND)
+        createTable()
+    else:
+        print(CRED + "No connection to the database has been established, data will not be saved." + CEND)
+    
     for x in range(3):
         for z in range (1, 4):
             match z:
