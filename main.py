@@ -1,5 +1,5 @@
 from connect import make_request, getData, internet_on, connectDB
-from database_save import createTable
+from database_save import createTable, addValues
 import os, time
 
 CYELL = '\033[33m'
@@ -7,6 +7,8 @@ CRED = '\033[91m'
 CEND = '\033[0m'
 CGREEN = '\033[92m'
 CBLUE = '\033[34m'
+
+REQUEST = False
 
 date = input("Data from a specific day (enter date *[....-..-..]* (y-m-d)) / skip the question (click Enter) \n")
 if len(str(date)) > 2:
@@ -34,6 +36,7 @@ if internet_on():
     if connectDB():
         print(CGREEN + "Connected do Database." + CEND)
         createTable()
+        time.sleep(2)
     else:
         print(CRED + "No connection to the database has been established, data will not be saved." + CEND)
     
@@ -56,6 +59,7 @@ if internet_on():
     print(CYELL + "Requesting information of XAU price..." + CEND)
     if getData("error") == 0:
         print(CGREEN + "Request successful" + CEND)
+        REQUEST = True
     else:
         print(CRED + "No data available for this date or pair." + CEND)
     
@@ -64,6 +68,13 @@ if internet_on():
 
 else:
     print(CRED + "Something's wrong with the internet!" + CEND)
+    REQUEST = False
+    
+if REQUEST:
+    addValues(str(getData('metal')), float(getData('price')), float(getData('low_price')), float(getData('high_price')), float(getData('chp')), str(getData('date')))
+    print(CGREEN + "Data saved to Database." + CEND)
+
+
 
 
 

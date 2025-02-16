@@ -20,7 +20,7 @@ def createTable():
     CUR.execute("""
                 
                 CREATE TABLE IF NOT EXISTS gold_pulse_data (
-                id INT PRIMARY KEY,
+                id SERIAL PRIMARY KEY ,
                 name VARCHAR(255),
                 price FLOAT,
                 low_price FLOAT,
@@ -30,7 +30,14 @@ def createTable():
                 );
                 
                 """)
+    CONN.commit()
     
+def addValues(m, p, lp, hp, chp_ , dte=""):
+    CUR.execute(f"""
+                
+                INSERT INTO gold_pulse_data (name, price, low_price, high_price, chp, date)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                """, (m, p, lp, hp, chp_, dte))
     CONN.commit()
     
 
