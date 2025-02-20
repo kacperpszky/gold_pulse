@@ -1,5 +1,6 @@
 from connect import make_request, getData, internet_on, connectDB
 from database_save import createTable, addValues
+from menu import print_menu
 import os, time
 
 CYELL = '\033[33m'
@@ -9,6 +10,8 @@ CGREEN = '\033[92m'
 CBLUE = '\033[34m'
 
 REQUEST = False
+
+print_menu()
 
 date = input("Data from a specific day (enter date *[....-..-..]* (y-m-d)) / skip the question (click Enter) \n")
 if len(str(date)) > 2:
@@ -20,18 +23,21 @@ if internet_on():
         for z in range (1, 4):
             match z:
                 case 1:
+                    print_menu()
                     print(CBLUE + "Connecting do Database." + CEND)
                     time.sleep(0.5)
                     os.system('cls')
                 case 2:
+                    print_menu()
                     print(CBLUE + "Connecting do Database.." + CEND)
                     time.sleep(0.5)
                     os.system('cls')
                 case 3:
+                    print_menu()
                     print(CBLUE + "Connecting do Database..." + CEND)
                     time.sleep(0.5)
                     os.system('cls')
-                    
+    print_menu()                
     print(CBLUE + "Connecting do Database..." + CEND)
     if connectDB():
         print(CGREEN + "Connected do Database." + CEND)
@@ -47,14 +53,17 @@ if internet_on():
                     print(CYELL + "Requesting information of XAU price." + CEND)
                     time.sleep(0.5)
                     os.system('cls')
+                    print_menu()
                 case 2:
                     print(CYELL + "Requesting information of XAU price.." + CEND)
                     time.sleep(0.5)
                     os.system('cls')
+                    print_menu()
                 case 3:
                     print(CYELL + "Requesting information of XAU price..." + CEND)
                     time.sleep(0.5)
                     os.system('cls')
+                    print_menu()
                     
     print(CYELL + "Requesting information of XAU price..." + CEND)
     if getData("error") == 0:
@@ -65,7 +74,7 @@ if internet_on():
     
     time.sleep(3)
     os.system('cls')
-
+    print_menu()
 else:
     print(CRED + "Something's wrong with the internet!" + CEND)
     REQUEST = False
