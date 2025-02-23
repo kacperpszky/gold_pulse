@@ -31,7 +31,7 @@ def internet_on():
         return False
 
 def make_request(date=""):
-    api_key = "goldapi-6xe17m755wb44-io"
+    api_key = "goldapi-3sjjsm7hoj4ds-io"
     symbol = "XAU"
     curr = "USD"
     date = date

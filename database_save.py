@@ -59,19 +59,40 @@ def getSeveralData(limit):
     """, (limit))
     
     result = CUR.fetchone()
+     # Tutaj trzeba dodac funkcje wpisywania danych do slownika (dict) i return slownik  
     
     
     
-    
-def getData(key):
+def getSimpleData(key):
         
     CUR.execute(f"""
-    SELECT %s FROM gold_pulse_data 
-    ORDER BY id DESC 
+    SELECT {key} FROM gold_pulse_data
+    ORDER BY id DESC
     LIMIT 1;
-    """,(key))
+    """)
 
-    result = CUR.fetchone()
+    result = str(CUR.fetchone())
+    
+    result = result.replace('(','')
+    result = result.replace(')','')
+    result = result.replace(',','')
+    
+    return result
+
+def getPenultimate(key):
+    
+    CUR.execute(f"""
+    SELECT {key} FROM gold_pulse_data
+    ORDER BY id DESC
+    LIMIT 1 OFFSET 1;
+    """)
+    
+    result = str(CUR.fetchone())
+    
+    result = result.replace('(','')
+    result = result.replace(')','')
+    result = result.replace(',','')
+    
     return result
     
     
