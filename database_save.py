@@ -1,11 +1,25 @@
 import os
 import psycopg2
- 
-DB_NAME = "postgres"
-DB_USER = "postgres"
-DB_PASS = "1009"
-DB_HOST = "localhost"
-DB_PORT = "5432"
+import json
+  
+def getData(key):
+    try:
+        with open("Config.txt", "r") as fp:
+            data = json.load(fp)
+        
+            if key in data:
+                return str(data[key])  
+            else:
+                return 0
+            
+    except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+        return False  
+
+DB_NAME = getData("DB_NAME")
+DB_USER = getData("DB_USER")
+DB_PASS = getData("DB_PASS")
+DB_HOST = getData("DB_HOST")
+DB_PORT = getData("DB_PORT")
  
 CONN = psycopg2.connect(database=DB_NAME,
                         user=DB_USER,
@@ -40,28 +54,7 @@ def addValues(m, p, lp, hp, chp_ , dte=""):
                 
                 """, (m, p, lp, hp, chp_, dte))
     CONN.commit()
-    
-def getSeveralData(limit):
-    
-    result_dict = {
-            "name" : "",
-            "price" : "",
-            "low_price" : "",
-            "high_price" : "",
-            "chp" : "",
-            "date" : ""
-    }
         
-    CUR.execute(f"""
-    SELECT * FROM gold_pulse_data 
-    ORDER BY id DESC 
-    LIMIT %s;
-    """, (limit))
-    
-    result = CUR.fetchone()
-     # Tutaj trzeba dodac funkcje wpisywania danych do slownika (dict) i return slownik  
-    
-    
     
 def getSimpleData(key):
         
