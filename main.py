@@ -1,7 +1,7 @@
 from connect import make_request, getData, internet_on, connectDB
 from database_save import createTable, addValues, getSimpleData, getPenultimate
 from menu import print_menu
-import os, time
+import os, time, sys
 import datetime
 
 CYELL = '\033[33m'
@@ -81,6 +81,8 @@ if internet_on():
 else:
     print(CRED + " " + "Something's wrong with the internet!" + CEND)
     REQUEST = False
+    time.sleep(2)
+    sys.exit()
     
 if REQUEST:
     addValues(str(getData('metal')), float(getData('price')), float(getData('low_price')), float(getData('high_price')), float(getData('chp')), str(getData('date')))
