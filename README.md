@@ -41,8 +41,7 @@ Run a test script or the main program to ensure the database connection works. T
 
 ## Authors
 
-ex. kacperpszky  
-ex. [@kacperpszky]
+kacperpszky  
 
 ## Version History
 
