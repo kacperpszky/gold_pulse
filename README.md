@@ -7,7 +7,7 @@ This Python program fetches and displays real-time gold price data (e.g., price,
 * Error Handling: Gracefully manages API failures or connectivity issues.
 
 ## Getting Started
-Before running the program, edit the connect.py file to specify the connection details for your local database server PostgreSQL running on your machine. Example connect.py connection details structure:
+Before running the program, edit the Config.txt file to specify the connection details for your local database server PostgreSQL running on your machine. Example Config.txt structure:
 
 ``` txt
 "DB_NAME":"postgres",
